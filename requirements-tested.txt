@@ -1,0 +1,6 @@
+# Direct dependency versions used for local validation; Python 3.13.9 on Windows.
+numpy==2.3.5
+scikit-learn==1.8.0
+matplotlib==3.10.6
+torch==2.13.0
+tensorflow==2.21.0
