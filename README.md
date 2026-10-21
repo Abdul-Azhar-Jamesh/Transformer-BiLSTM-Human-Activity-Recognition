@@ -48,6 +48,21 @@ Both default to 100 epochs, batch size 64, Adam at 0.001, seed 42, and early sto
 
 For a short pipeline check use `--epochs 1`; this is not a meaningful benchmark. Train both to convergence before comparing performance. The frameworks and model sizes differ, so identical settings do not establish equal compute budgets. TensorFlow includes dense-layer L2 regularization.
 
+## Training with the robotics environment
+
+The robotics environment can train the PyTorch BiLSTM on CUDA and the Transformer on CPU:
+
+```powershell
+conda activate robotics
+python train.py --model bilstm --backend torch --device cuda --output runs/bilstm-gpu-full
+python train.py --model transformer --device cpu --output runs/transformer-cpu-full
+python evaluate.py --run runs/bilstm-gpu-full --device cuda
+python evaluate.py --run runs/transformer-cpu-full --device cpu
+python compare.py runs/bilstm-gpu-full runs/transformer-cpu-full
+```
+
+The PyTorch BiLSTM preserves the two bidirectional LSTM widths, classifier, dense-layer L2 penalty, and dropout rates. Input dropout uses a mask shared over time; framework initialization and dropout sampling differ, so training trajectories need not match TensorFlow. A shared-weight test checks that both implementations agree at inference. Both full runs use the same seed, data, Adam learning rate, epoch limit, and validation-based stopping protocol. TensorFlow remains available as the default BiLSTM backend.
+
 ## Evaluate and compare
 
 ```powershell
@@ -58,7 +73,7 @@ python compare.py runs/bilstm runs/transformer
 
 Evaluation loads the best validation checkpoint and uses the official held-out test data. Each `runs/<model>/evaluation` contains accuracy, macro F1, a per-class classification report, confusion matrix CSV/PNG, and predictions with probabilities. Comparison writes `runs/comparison.csv`. A dataset SHA-256 check prevents accidental evaluation or comparison against different prepared data. Use the test set for final reporting; repeated test-driven tuning compromises its held-out role.
 
-No benchmark accuracy is claimed in this repository. Scores must come from your own saved evaluations. Full training can take substantial time on CPU.
+Completed full runs achieved **92.81% test accuracy / 92.65% macro F1 for Transformer** and **89.65% / 89.66% for BiLSTM**. See [full training results](results/full_training/README.md) for the protocol, histories, plots, and limitations. These are single-seed measurements.
 
 ## Hardware reference
 

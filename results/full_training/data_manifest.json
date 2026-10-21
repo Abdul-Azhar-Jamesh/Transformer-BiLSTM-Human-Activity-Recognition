@@ -1,0 +1,70 @@
+{
+  "seed": 42,
+  "channels": [
+    "body_acc_x",
+    "body_acc_y",
+    "body_acc_z",
+    "body_gyro_x",
+    "body_gyro_y",
+    "body_gyro_z",
+    "total_acc_x",
+    "total_acc_y",
+    "total_acc_z"
+  ],
+  "activities": [
+    "WALKING",
+    "WALKING_UPSTAIRS",
+    "WALKING_DOWNSTAIRS",
+    "SITTING",
+    "STANDING",
+    "LAYING"
+  ],
+  "normalization": "Per-channel z-score fitted on training subjects only",
+  "splits": {
+    "train": {
+      "windows": 5551,
+      "subjects": [
+        5,
+        6,
+        7,
+        8,
+        11,
+        14,
+        16,
+        17,
+        19,
+        21,
+        22,
+        23,
+        26,
+        28,
+        29,
+        30
+      ]
+    },
+    "val": {
+      "windows": 1801,
+      "subjects": [
+        1,
+        3,
+        15,
+        25,
+        27
+      ]
+    },
+    "test": {
+      "windows": 2947,
+      "subjects": [
+        2,
+        4,
+        9,
+        10,
+        12,
+        13,
+        18,
+        20,
+        24
+      ]
+    }
+  }
+}

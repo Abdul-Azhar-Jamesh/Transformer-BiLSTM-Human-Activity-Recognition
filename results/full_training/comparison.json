@@ -1,0 +1,24 @@
+[
+  {
+    "model": "BiLSTM",
+    "training_device": "cuda",
+    "epochs_completed": 31,
+    "best_epoch": 16,
+    "best_validation_macro_f1": 0.9663109500536747,
+    "test_accuracy": 0.8965049202578894,
+    "test_macro_f1": 0.8966319265796682,
+    "dataset_sha256": "6b1d1981bae904b3be7b9739ae1a4e019772757ed947c4932798e5fe274068db",
+    "checkpoint_sha256": "9ea839a07a97a7e61be66050a62625573b465066a335ec9966384dfa0f6fd292"
+  },
+  {
+    "model": "Transformer",
+    "training_device": "cpu",
+    "epochs_completed": 28,
+    "best_epoch": 13,
+    "best_validation_macro_f1": 0.9724087684088415,
+    "test_accuracy": 0.9280624363759755,
+    "test_macro_f1": 0.9265155854822759,
+    "dataset_sha256": "6b1d1981bae904b3be7b9739ae1a4e019772757ed947c4932798e5fe274068db",
+    "checkpoint_sha256": "cb2e40631d1f69706f6506a8e52c1a3ab1962b67939cd1040962c2f94a4b00fd"
+  }
+]
